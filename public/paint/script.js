@@ -633,7 +633,6 @@ async function placeColor() {
 	placeSound.play();
 
 	unpickColor();
-	startCooldown(maxCooldown);
 }
 
 function showSelectorBorder() {
