@@ -108,9 +108,9 @@ stats.startRecording(10 * 60 * 1000 /* 10 min */, 24 * 60 * 60 * 1000 /* 24 hrs 
 
 const clients_NC = new Map();
 
-const canvas_NC = new Canvas_NC().initialize({ sizeX: 2010, sizeY: 2010, colors: ["#6d001a", "#be0039", "#ff4500", "#ffa800", "#ffd635", "#fff8b8", "#00a368", "#00cc78", "#7eed56", "#d9e650", "#00756f", "#009eaa", "#00ccc0", "#2450a4", "#3690ea", "#51e9f4", "#293873", "#493ac1", "#6a5cff", "#94b3ff", "#811e9f", "#b44ac0", "#e4abff", "#de107f", "#ff3881", "#ff99aa", "#6d482f", "#9c6926", "#ffb470", "#000000", "#515252", "#898d90", "#d4d7d9", "#ffffff"] });
-const io_NC = new Canvas.IO(canvas_NC, "./canvas_NC/current.hst");
-const stats_NC = new Canvas.Stats(canvas_NC, io_NC, () => clients_NC.size);
+const canvas_NC = new Canvas_NC().initialize_NC({ sizeX: 2010, sizeY: 2010, colors: ["#6d001a", "#be0039", "#ff4500", "#ffa800", "#ffd635", "#fff8b8", "#00a368", "#00cc78", "#7eed56", "#d9e650", "#00756f", "#009eaa", "#00ccc0", "#2450a4", "#3690ea", "#51e9f4", "#293873", "#493ac1", "#6a5cff", "#94b3ff", "#811e9f", "#b44ac0", "#e4abff", "#de107f", "#ff3881", "#ff99aa", "#6d482f", "#9c6926", "#ffb470", "#000000", "#515252", "#898d90", "#d4d7d9", "#ffffff"] });
+const io_NC = new Canvas_NC.IO(canvas_NC, "./canvas_NC/current.hst");
+const stats_NC = new Canvas_NC.Stats(canvas_NC, io_NC, () => clients_NC.size);
 io_NC.read();
 stats_NC.startRecording(10 * 60 * 1000 /* 10 min */, 24 * 60 * 60 * 1000 /* 24 hrs */);
 // day 2 colors
@@ -335,7 +335,7 @@ app.post("/place_NC", userInfo, async (req, res) => {
 		return res.status(403).send();
 	}
 
-	const placed = canvas_NC.place(+req.body.x, +req.body.y, +req.body.color, req.member.user.id);
+	const placed = canvas_NC.place_NC(+req.body.x, +req.body.y, +req.body.color, req.member.user.id);
 
 	res.send({ placed });
 });
@@ -367,7 +367,7 @@ app.post("/adminPlace_NC", userInfo, async (req, res) => {
 		return
 	}
 
-	const placed = canvas_NC.adminPlace(+req.body.x, +req.body.y, +req.body.color, req.member.user.id);
+	const placed = canvas_NC.adminPlace_NC(+req.body.x, +req.body.y, +req.body.color, req.member.user.id);
 
 	res.send({ placed });
 });
@@ -771,7 +771,15 @@ app.get("/stats-json", ExpressCompression(), userInfo, (req, res) => {
 
 	res.json(statsJson);
 });
+app.get("/stats-json_NC", ExpressCompression(), userInfo, (req, res) => {
+	const statsJson_NC = { global: Object.assign({ userCount: clients_NC.size, pixelCount: canvas_NC.pixelEvents.length }, stats_NC.global) };
 
+	if (req.member) {
+		statsJson_NC.personal = stats_NC.personal.get(req.member.user.id);
+	}
+
+	res.json(statsJson_NC);
+});
 
 
 
@@ -816,17 +824,17 @@ canvas.addListener("pixel", (x, y, color) => {
 		socket.send(buf);
 	}
 });
-canvas_NC.addListener("pixel", (x, y, color) => {
+canvas_NC.addListener("pixel_NC", (x, y, color) => {
 	console.log("Pixel sent to " + clients_NC.size + " - " + new Date().toString());
 	const buf = io_NC.serializePixelWithoutTheOtherStuff(x, y, color);
-	for (const socket of clients.values()) {
+	for (const socket of clients_NC.values()) {
 		socket.send(buf);
 	}
 });
 let connectedClientsCount = 0;
 app.setUpSockets = () => {
 	try {
-		app.ws("/", ws => {
+		app.ws("/ui", ws => {
 			const clientId = idCounter++;
 			console.log("socket connected");
 			connectedClientsCount++;
@@ -845,6 +853,24 @@ app.setUpSockets = () => {
 	}
 };
 app.setUpSockets();
+app.setUpSockets_NC = () => {
+	try {
+		app.ws("/paint", ws => {
+			const clientId = idCounter++;
+			console.log("socket connected");
+			connectedClientsCount++;
+			clients_NC.set(clientId, ws);
+
+			ws.on("close", () => {
+				connectedClientsCount--;
+				clients_NC.delete(clientId);
+			});
+		});
+	} catch (error) {
+		console.log("Error while setting up websocket:", error);
+	}
+};
+app.setUpSockets_NC();
 app.get("/connectedClientsCount", (req, res) => {
 	res.json({ connectedClientsCount });
 });

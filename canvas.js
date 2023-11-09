@@ -377,7 +377,7 @@ Canvas.Stats = class {
 
 		//
 
-		canvas.addListener("pixel", this._updateRealTime.bind(this));
+		canvas.addListener("pixel_NC", this._updateRealTime.bind(this));
 		io.addListener("read", this._updateRealTime.bind(this));
 
 		// TODO: Yucky!

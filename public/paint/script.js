@@ -113,7 +113,7 @@ let socket;
 async function connectSocket() {
 	await repaintCanvas();
 
-	socket = new WebSocket("wss://" + window.location.host);
+	socket = new WebSocket("wss://canvas.mares.place/paint/");
 
 	socket.addEventListener("message", async e => {
 		const bytes = new Uint8Array(await e.data.arrayBuffer());
@@ -854,9 +854,9 @@ function openManechat() {
 	window.location.href = "https://discord.gg/bronyplace";
 }
 
-function openStats() {
+function openStats_NC() {
 	clickSound.play();
-	window.location.href = "/stats_nc";
+	window.location.href = "/stats_NC";
 }
 
 function openNormalCanvas() {
