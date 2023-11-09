@@ -856,7 +856,7 @@ function openManechat() {
 
 function openStats_NC() {
 	clickSound.play();
-	window.location.href = "/stats_NC";
+	window.location.href = "/stats_nc";
 }
 
 function openNormalCanvas() {
