@@ -129,8 +129,6 @@ class Canvas_NC extends EventEmitter {
         this._setPixel(x, y, color, userId, timestamp);
         this.emit("pixel", x, y, color, userId, timestamp);
 
-        this.users.get(userId).cooldown = this.settings.maxCooldown;
-
         return true;
     }
     adminPlace(x, y, color, userId) {
