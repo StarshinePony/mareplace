@@ -358,7 +358,7 @@ startInterval(5 * 60 * 1000 /* 5 mins */, async () => {
 });
 
 function login() {
-	window.location.href = "/auth/discord?from=stats";
+	window.location.href = "/auth/discord?from=/stats";
 }
 
 function isElementInViewport(el) {
