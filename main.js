@@ -129,6 +129,7 @@ const canvas_NC = new Canvas_NC().initialize_NC({
 		"#009eaa",
 		"#00ccc0",
 		"#2450a4",
+		"#293873",
 		"#3690ea",
 		"#44b1ce",
 		"#00ccff",
