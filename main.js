@@ -108,7 +108,7 @@ stats.startRecording(10 * 60 * 1000 /* 10 min */, 24 * 60 * 60 * 1000 /* 24 hrs 
 
 const clients_NC = new Map();
 
-const canvas_NC = new Canvas_NC().initialize_NC({ sizeX: 2010, sizeY: 2010, colors: ["#6d001a", "#be0039", "#ff4500", "#ffa800", "#ffd635", "#fff8b8", "#00a368", "#00cc78", "#7eed56", "#d9e650", "#00756f", "#009eaa", "#00ccc0", "#2450a4", "#3690ea", "#51e9f4", "#293873", "#493ac1", "#6a5cff", "#94b3ff", "#8f8fe0", "#811e9f", "#793ccf", "#a771f7", "#b44ac0", "#e4abff", "#de107f", "#ff3881", "#ff99aa", "#6d482f", "#9c6926", "#ffb470", "#000000", "#515252", "#898d90", "#d4d7d9", "#ffffff"] });
+const canvas_NC = new Canvas_NC().initialize_NC({ sizeX: 2010, sizeY: 2010, colors: ["#6D001A", "#BE0039", "#FF4500", "#FFA800", "#FFD635", "#00A368", "#00CC78", "#7EED56", "#00756F", "#009EAA", "#00CCC0", "#2450A4", "#3690EA", "#51E9F4", "#493AC1", "#6A5CFF", "#94B3FF", "#811E9F", "#B44AC0", "#E4ABFF", "#DE107F", "#FF3881", "#FF99AA", "#6D482F", "#9C6926", "#FFB470", "#000000", "#515252", "#898D90", "#D4D7D9", "#FFFFFF", "#ffff5c", "#d9d94a", "#ff7313", "#fce07c", "#bdbd3e", "#c0aa19", "#8f8fe0", "#6b6bd1", "#9efe90", "#360082", "#00ccff", "#44b1ce", "#4a2157", "#d676e3", "#abfbff", "#a11461", "#592d1b", "#914724", "#cc6d42", "#ff8559", "#ffd5ad", "#d39748", "#fa74a4", "#ffd1dc", "#679112", "#d39648", "#9fc455", "#d5ebad", "#adafb0", "#793ccf", "#a771f7", "#d3bff5"] });
 const io_NC = new Canvas_NC.IO(canvas_NC, "./canvas_NC/current.hst");
 const stats_NC = new Canvas_NC.Stats(canvas_NC, io_NC, () => clients_NC.size);
 io_NC.read();
