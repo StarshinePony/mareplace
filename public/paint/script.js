@@ -41,6 +41,7 @@ const pixelColor = selectorPixel.querySelector("#pixel-color");
 const shareTooltip = document.getElementById("share-tooltip");
 const placerTooltip = document.getElementById("placer-tooltip");
 const colorsContainer = document.getElementById("colors");
+const hexColorContainer = document.getElementById("hexColor")
 const extraScreen = document.getElementById("extra-screen");
 const adminColorsContainer = document.getElementById("adminColors");
 const modUi = document.getElementById("modUi");
@@ -863,3 +864,22 @@ function openNormalCanvas() {
 	clickSound.play();
 	window.location.href = "/ui";
 }
+let colorInput = document.querySelector('#color');
+let hexInput = document.querySelector('#hex');
+
+colorInput.addEventListener('input', () => {
+	let color = colorInput.value;
+	let hexWithoutHash = color.startsWith("#") ? color.slice(1) : color;
+	let rgbInt = parseInt(hexWithoutHash, 16);
+	hexColorContainer.innerHTML = "";
+	const colorButton = document.createElement("div");
+	colorButton.className = "color";
+	colorButton.dataset.color = rgbInt;
+	colorButton.style.backgroundColor = rgbIntToHex(rgbInt);
+	colorButton.onpointerup = () => pickColor(colorButton);
+	hexColorContainer.appendChild(colorButton)
+	hexInput.value = color;
+	// document.body.style.backgroundColor = color;
+
+	document.querySelector('color').style.color = color;
+});

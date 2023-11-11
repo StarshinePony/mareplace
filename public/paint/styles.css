@@ -250,12 +250,15 @@ body {
 .white {
 	background-color: white;
 }
+
 .green {
 	background-color: #00ff6c;
-	}
+}
+
 .green.inactive {
 	background-color: #2C3C41;
 }
+
 .gray {
 	background-color: #E9EDEE;
 }
@@ -343,6 +346,17 @@ body {
 	gap: 2px;
 }
 
+#hexColor {
+	width: min(700px, 100%);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2px;
+}
+
 #adminColors {
 	width: min(700px, 100%);
 	height: 100%;
@@ -376,6 +390,12 @@ body {
 
 #cancel,
 #confirm {
+	width: min(35%, 270px);
+	height: 55px;
+	margin: 0 15px 0 15px;
+}
+
+#color {
 	width: min(35%, 270px);
 	height: 55px;
 	margin: 0 15px 0 15px;

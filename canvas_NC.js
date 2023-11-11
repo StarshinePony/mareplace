@@ -253,10 +253,6 @@ class Canvas_NC extends EventEmitter {
             return false;
         }
 
-        if (!this.settings.colors.includes(+color)) {
-            return false;
-        }
-
         if (this.users.get(userId).cooldown > 0) {
             return false;
         }
