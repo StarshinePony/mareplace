@@ -596,7 +596,7 @@ app.get('/', function (req, res) {
 		  	</div>
 	</div>
     <script>
-        const targetTimestamp = 1697288400;
+        const targetTimestamp = 1703187600;
  
         function updateCountdown() {
             const currentTimestamp = Math.floor(Date.now() / 1000);
