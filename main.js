@@ -99,7 +99,7 @@ async function userInfo(req, res, next) {
 
 const clients = new Map();
 
-const canvas = new Canvas().initialize({ sizeX: 750, sizeY: 500, colors: ["#6d001a", "#be0039", "#ff4500", "#ffa800", "#ffd635", "#fff8b8", "#00a368", "#00cc78", "#7eed56", "#d9e650", "#00756f", "#009eaa", "#00ccc0", "#2450a4", "#3690ea", "#51e9f4", "#293873", "#493ac1", "#6a5cff", "#94b3ff", "#811e9f", "#b44ac0", "#e4abff", "#de107f", "#ff3881", "#ff99aa", "#6d482f", "#9c6926", "#ffb470", "#000000", "#515252", "#898d90", "#d4d7d9", "#ffffff"] });
+const canvas = new Canvas().initialize({ sizeX: 750, sizeY: 500, colors: ["#6d001a", "#be0039", "#ff4500", "#ffa800", "#ffd635", "#fff8b8", "#00a368", "#00cc78", "#7eed56", "#d9e650", "#00756f", "#009eaa", "#00ccc0", "#2450a4", "#3690ea", "#51e9f4", "#293873", "#493ac1", "#6a5cff", "#94b3ff", "#811e9f", "#b44ac0", "#e4abff", "#de107f", "#ff3881", "#ff99aa", "#6d482f", "#9c6926", "#dd8f00", "#ffb470", "#000000", "#515252", "#898d90", "#d4d7d9", "#ffffff"] });
 const io = new Canvas.IO(canvas, "./canvas/current.hst");
 const stats = new Canvas.Stats(canvas, io, () => clients.size);
 io.read();
