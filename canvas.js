@@ -141,7 +141,7 @@ let sortedCounters = {};
 let sortedCountersDay = {};
 let eventDate = null;
 let currentDateDay = null;
-async function generateCounters(events, topCount = 30) {
+async function generateCounters(events, topCount = 10) {
 	if (!events) {
 		events = readEventss("canvas/current.hst")
 	}
