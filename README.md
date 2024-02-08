@@ -1,3 +1,3 @@
 # canvas.mares.place
 
-Its all about placin pixels and mares
+Its all about placin pixels and HONSE
