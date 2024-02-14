@@ -692,7 +692,7 @@ function updatePlaceButton() {
 	}
 	if (over) {
 		placeButton.style.background = `linear-gradient(to left, #2C3C41, #2C3C41 100%, #566F74 100%, #566F74)`;
-		placeText.innerHTML = "<b>Canvas is deactivated</b>";
+		placeText.innerHTML = "<b>Time's up!</b>";
 		return;
 	}	
 
