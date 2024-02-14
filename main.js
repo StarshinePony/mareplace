@@ -349,10 +349,11 @@ app.get("/auth/discord/redirect", async (req, res) => {
 
 app.get("/initialize", userInfo, async (req, res) => {
 	if (!req.user) {
-		return res.json({ loggedIn: false, banned: false, cooldown: 0, settings: canvas.settings });
+		return res.json({ loggedIn: false, banned: false, over: false, cooldown: 0, settings: canvas.settings });
 	}
 
-	res.json({ loggedIn: true, banned: isBanned(req.member), mod: isMod(req.member), cooldown: canvas.users.get(req.user.id).cooldown, settings: canvas.settings });
+
+	res.json({ loggedIn: true, banned: isBanned(req.member), mod: isMod(req.member), over: isOver(), cooldown: canvas.users.get(req.user.id).cooldown, settings: canvas.settings });
 	console.log(res.json)
 	console.log(res.json.banned, res.json.mod)
 });
@@ -874,6 +875,14 @@ function isMod(member) {
 	}
 
 	return false;
+}
+function isOver() {
+	const timestamp = 1709290800
+	const currentTimestampSeconds = Math.floor(Date.now() / 1000);
+	if (timestamp == currentTimestampSeconds) {
+		return true
+	}
+	return false
 }
 
 /*
