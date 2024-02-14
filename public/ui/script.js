@@ -84,7 +84,7 @@ let placerTooltipTimer;
 
 let loggedIn = false;
 let banned = false;
-
+let over = false;
 
 
 
@@ -137,6 +137,7 @@ fetch("/initialize")
 		loggedIn = res.loggedIn;
 		banned = res.banned;
 		mod = res.mod;
+		over = res.over;
 		console.log(mod)
 		modtools.classList.add("hidden")
 		if (mod) {
@@ -389,6 +390,9 @@ function openPaint() {
 	if (banned) {
 		return;
 	}
+	if (over) {
+		return;
+	}
 
 	if (mod) {
 		painter.classList.add("open");
@@ -482,6 +486,9 @@ function openPicker() {
 	}
 
 	if (banned) {
+		return;
+	}
+	if (over) {
 		return;
 	}
 
@@ -683,6 +690,11 @@ function updatePlaceButton() {
 		placeText.innerHTML = "<b>Restricted</b>";
 		return;
 	}
+	if (over) {
+		placeButton.style.background = `linear-gradient(to left, #2C3C41, #2C3C41 100%, #566F74 100%, #566F74)`;
+		placeText.innerHTML = "<b>Canvas is deactivated</b>";
+		return;
+	}	
 
 	if (mod) {
 		placeButton.style.background = `linear-gradient(to left, #df61ff, #df61ff 100%, #566F74 100%, #566F74)`;
