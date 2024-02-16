@@ -157,8 +157,7 @@ fetch("/initialize")
 		document.title = `Mare Place - Ready!`;
 
 		setColors(res.settings.colors);
-		const adminColors = [16777215]
-		setAdminColors(adminColors);
+		setAdminColors(res.settings.colors);
 		updatePlaceButton();
 	})
 	.then(connectSocket)
