@@ -877,7 +877,7 @@ function isMod(member) {
 	return false;
 }
 function isOver() {
-	const timestamp = 1709290800
+	const timestamp = 1709291000
 	const currentTimestampSeconds = Math.floor(Date.now() / 1000);
 	if (timestamp < currentTimestampSeconds) {
 		return true
